@@ -20,7 +20,7 @@ locals {
 
       runcmd:
       - echo "start"
-      - curl -L https://.sh | sed 's/owt/${local.name}-rabbit-${local.env}/g' | REGION="${local.region}" SVC_ENV="${local.env}" AWS_ID="${local.aws.key}" AWS_SECRET="${local.aws.secret}" sh
+      - curl -L https://raw.githubusercontent.com/angle319/tf_rabbit_cluster/master/discover.sh | sed 's/owt/${local.name}-rabbit-${local.env}/g' | REGION="${local.region}" SVC_ENV="${local.env}" AWS_ID="${local.aws.key}" AWS_SECRET="${local.aws.secret}" sh
       - rabbitmq-plugins --offline enable rabbitmq_management rabbitmq_peer_discovery_aws
       - echo "CCSCYBELKXATHBUVDTEK" | tee /var/lib/rabbitmq/.erlang.cookie
       - systemctl restart rabbitmq-server
